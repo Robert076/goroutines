@@ -20,9 +20,18 @@ func runsBothUsingGoroutines() {
 	count(&y)
 }
 
+func runsBothButMainFinishesSoItCollapsesTheGoroutines() {
+	x := "sheep"
+	go count(&x)
+	y := "other"
+	go count(&y)
+	time.Sleep(time.Millisecond * 2000)
+}
+
 func main() {
 	// doesntRunBothCalls()
-	runsBothUsingGoroutines()
+	// runsBothUsingGoroutines()
+	runsBothButMainFinishesSoItCollapsesTheGoroutines()
 }
 
 func count(x *string) {
